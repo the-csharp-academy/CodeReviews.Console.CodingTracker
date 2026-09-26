@@ -48,7 +48,7 @@ namespace Coding.Tracker
         {
             return Execute(db =>
             {
-                var query = $"UPDATE {table} SET StartTime=@StartTime, EndTime=@EndTime, Duration=@Duration";
+                var query = $"UPDATE {table} SET StartTime=@StartTime, EndTime=@EndTime, Duration=@Duration WHERE Id=@Id";
                 return db.Execute(query, session) > 0;
             });
         }
