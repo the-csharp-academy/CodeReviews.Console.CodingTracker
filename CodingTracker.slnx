@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CodingTracker.UnitTests/CodingTracker.UnitTests.csproj" Id="b037cc30-31d2-4524-85d4-29a4388f92f8" />
+  <Project Path="CodingTracker/CodingTracker.csproj" />
+</Solution>
