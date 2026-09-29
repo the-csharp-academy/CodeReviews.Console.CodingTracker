@@ -1,0 +1,5 @@
+# CODING TRACKER 
+I have to say, it was a really cool project in terms of design and architecture.
+Since I had already submitted my habit tracker for review by then, creating a coding tracker based on it was straightforward—Dapper isn't all that different from ADO.NET.
+The real challenge lay in separating concerns and adhering to the Single Responsibility Principle (SRP). Looking at the commit history of the original repository (https://github.com/dofelor/CodingTracker), you can see that I refactored the code along the way. I consulted an AI about SRP compliance and whether I was on the right track; it noted that the logic was sound but suggested adding an extra layer for context, so I implemented the Repository pattern. It all makes sense—I tried to pass everything necessary using abstractions. The only potential issue is that the controller still handles both input and output, though it no longer initializes the database itself; the repository handles that now. Ultimately, I learned that the foundation relies on four layers of abstraction.
+That’s all for now.
