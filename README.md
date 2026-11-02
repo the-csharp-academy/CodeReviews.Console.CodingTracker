@@ -66,7 +66,7 @@ The following is an example containing the required settings that the applicatio
 
 **SeedDatabase**: If set to true, the Seeding algorithm will run and the database will be populated with 100 random Coding Sessions.
 
-## Reflection
+## :mirror: Reflection
 Even though the use of Dapper was required, it turned out to be quite simple, even simpler than using raw ADO.NET. There were few differences in the overall project structure from my [previous project](https://github.com/Kunikazu723/TCSA.HabitTracker). The only noticeable differences were the use of Dapper micro ORM, configuration files and DateTime logic. 
 
 It was an interesting project. I wish to improve on it when I gather more experience. Maybe adding a GUI later on.
