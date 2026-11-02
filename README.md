@@ -35,7 +35,7 @@ dotnet run --poject CodingTracker.Kunikazu723
 To change databasePath, connection strings and date time format, refer to the [App Settings](#app-settings-file) section.
 
 ## 💾 How it works
-First the Database is generated with 100 random Coding Sessions. Then the user is presented with 5 options tha can be selected using the keyboard's arrows, 4 of them are CRUD operations.  
+First the Database is generated with 100 random Coding Sessions (Database seeding can be configured using [App Settings](#app-settings-file)). Then the user is presented with 5 options tha can be selected using the keyboard's arrows, 4 of them are CRUD operations the last one is to exit the app.  
 Each Coding Session needs a Start Date and End Date, both are stored in the database with a default date-time format. The duration is calculated during data presentation.
 
 ## :pencil2: Architectural Choices
@@ -46,7 +46,7 @@ The database has a Coding Sessions table that contains Id, Start Time and End Ti
 Database access is made through a Data Access Object (DAO) to make client code esaily communicate with the database through simple method calls.  
 Usually I would use a service class as an intermediate between the DAO and the User Interface, but for a project this size I thought it was a bit overkill. I uderstand that an intermediate would be valuable to make sure any data entering the Database is clean and follows the specified pattern. But for simplicity sake I chose to make the UI communicate directly to the DAO.  
 > [!NOTE] 
-> One thing worth noticing is that DateTime objects are stored in the database using Dapper calls directly without any conversion made by my code, it uses ADO.NET drivers implicit conversion that follows DateTime's ISO string format
+> One thing worth noticing is that DateTime objects are stored in the database using Dapper calls directly without any conversion made by my code, it uses [Microsoft's ADO.NET Sqlite provider implicit conversion](https://learn.microsoft.com/pt-br/dotnet/standard/data/sqlite/types) that follows DateTime's ISO string format.
 
 ### User Interface
 As usual the UI is projected as a TUI by using [Spectre Console](https://spectreconsole.net/) package, allowing for intuitive, pretty and smooth user experience while also making it far easier to design it.
@@ -69,7 +69,7 @@ The following is an example containing the required settings that the applicatio
 **SeedDatabase**: If set to true, the Seeding algorithm will run and the database will be populated with 100 random Coding Sessions.
 
 ## :mirror: Reflection
-Even though the use of Dapper was required, it turned out to be quite simple, even simpler than using raw ADO.NET. There were few differences in the overall project structure from my [previous project](https://github.com/Kunikazu723/TCSA.HabitTracker). The only noticeable differences were the use of Dapper micro ORM, configuration files and DateTime logic. 
+Even though the use of Dapper was required, it turned out to be quite simple, even simpler than using raw ADO.NET. There were few differences in the overall project structure compared to my [previous project](https://github.com/Kunikazu723/TCSA.HabitTracker). The only noticeable differences were the use of Dapper micro ORM, configuration files and DateTime logic. 
 
 It was an interesting project. I wish to improve on it when I gather more experience. Maybe adding a GUI later on.
 
