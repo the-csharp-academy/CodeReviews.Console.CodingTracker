@@ -74,6 +74,6 @@ Even though the use of Dapper was required, it turned out to be quite simple, ev
 It was an interesting project. I wish to improve on it when I gather more experience. Maybe adding a GUI later on.
 
 ### Challenges
-By far the most difficult challenge was desiging a good filter for displaying Coding Sessions. Setting up the date rolling window was tricky and displayed incorrect or unexpected results. Luckily after banging my head against the wall for a bit I managed to make a predictable rolling window.
+By far the most difficult challenge was designing a good filter for displaying Coding Sessions. Setting up the date rolling window was tricky and displayed incorrect or unexpected results. Luckily after banging my head against the wall for a bit I managed to make a predictable rolling window.
 
-Another suprising challenge was properly accessing the [App Settings File](#app-settings-file). The task is seemingly simple but I found myself deep into the rabbit hole of configuration files and how to set them up properly. After reading some articles I found the Extension Configuration package from microsoft.
+Another surprising challenge was properly accessing the [App Settings File](#app-settings-file). The task is seemingly simple but I found myself deep into the rabbit hole of configuration files and how to set them up properly. After reading some articles I found the Extension Configuration package from microsoft.
