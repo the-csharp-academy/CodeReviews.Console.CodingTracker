@@ -13,7 +13,8 @@ Tracking Coding Sessions is a good way for the user to evaluate how often they c
 
 ## How to run locally
 The app has not been published, so it needs to run locally by .NET's runtime.  
-> [!IMPORTANT] Make sure [**.NET SDK 9**](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) or higher is installed in order to run this project.
+> [!IMPORTANT] 
+> Make sure [**.NET SDK 9**](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) or higher is installed in order to run this project.
 
 Clone the repository:
 ```
