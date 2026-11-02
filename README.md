@@ -44,7 +44,8 @@ The database has a Coding Sessions table that contains Id, Start Time and End Ti
 ### Data Access
 Database access is made through a Data Access Object (DAO) to make client code esaily communicate with the database through simple method calls.  
 Usually I would use a service class as an intermediate between the DAO and the User Interface, but for a project this size I thought it was a bit overkill. I uderstand that an intermediate would be valuable to make sure any data entering the Database is clean and follows the specified pattern. But for simplicity sake I chose to make the UI communicate directly to the DAO.  
-> [!NOTE] One thing worth noticing is that DateTime objects are stored in the database using Dapper calls directly without any conversion made by my code, it uses ADO.NET drivers implicit conversion that follows DateTime's ISO string format
+> [!NOTE] 
+> One thing worth noticing is that DateTime objects are stored in the database using Dapper calls directly without any conversion made by my code, it uses ADO.NET drivers implicit conversion that follows DateTime's ISO string format
 
 ### User Interface
 As usual the UI is projected as a TUI by using [Spectre Console](https://spectreconsole.net/) package, allowing for intuitive, pretty and smooth user experience while also making it far easier to design it.
