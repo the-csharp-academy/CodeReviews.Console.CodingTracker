@@ -1,7 +1,7 @@
 ﻿using CodingTracker.Kunikazu723.Dao.Interfaces;
 using CodingTracker.Kunikazu723.Models;
 using Dapper;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 
 namespace CodingTracker.Kunikazu723.Dao
 {
@@ -16,7 +16,7 @@ namespace CodingTracker.Kunikazu723.Dao
 
         public void DeleteItemById(CodingSession codingSession)
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             var sql = """
                 DELETE FROM CodingSessions WHERE Id = @Id
                 """;
@@ -25,7 +25,7 @@ namespace CodingTracker.Kunikazu723.Dao
 
         public List<CodingSession> GetAllItems()
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             string sql = """
                 SELECT * FROM CodingSessions
                 """;
@@ -34,7 +34,7 @@ namespace CodingTracker.Kunikazu723.Dao
 
         public CodingSession? GetItemById(int id)
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             var sql = """
                 SELECT * FROM CodingSessions WHERE Id = @itemId
                 """;
@@ -43,7 +43,7 @@ namespace CodingTracker.Kunikazu723.Dao
 
         public void InsertItem(CodingSession item)
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             var sql = """
                 INSERT INTO CodingSessions (StartTime, EndTime) VALUES (@StartTime, @EndTime)
                 """;
@@ -52,7 +52,7 @@ namespace CodingTracker.Kunikazu723.Dao
 
         public void InsertMany(List<CodingSession> collection)
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             connection.Open();
 
             using var transaction = connection.BeginTransaction();
@@ -65,7 +65,7 @@ namespace CodingTracker.Kunikazu723.Dao
 
         public void UpdateItemById(CodingSession newItem)
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             var sql = """
                 UPDATE CodingSessions
                 SET StartTime = @StartTime, EndTime = @EndTime

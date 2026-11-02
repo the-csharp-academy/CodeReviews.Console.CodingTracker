@@ -2,7 +2,7 @@
 using CodingTracker.Kunikazu723.Models;
 using CodingTracker.Kunikazu723.Services;
 using Spectre.Console;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using static CodingTracker.Kunikazu723.Enums.MenuEnums;
 using static CodingTracker.Kunikazu723.Enums.Filters;
 
@@ -35,7 +35,7 @@ namespace CodingTracker.Kunikazu723.UserLand
                 {
                     ExecuteOption(option);
                 }
-                catch (SQLiteException ex)
+                catch (SqliteException ex)
                 {
                     if (ex.ErrorCode == 19)
                     {

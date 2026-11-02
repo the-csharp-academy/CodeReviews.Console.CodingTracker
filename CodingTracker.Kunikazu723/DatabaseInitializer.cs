@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 
 namespace CodingTracker.Kunikazu723
 {
@@ -13,7 +13,7 @@ namespace CodingTracker.Kunikazu723
 
         public void Initialize()
         {
-            using var connection = new SQLiteConnection(_connectionString);
+            using var connection = new SqliteConnection(_connectionString);
             connection.Execute("""
                 CREATE TABLE IF NOT EXISTS CodingSessions (
                   Id INTEGER PRIMARY KEY AUTOINCREMENT,
