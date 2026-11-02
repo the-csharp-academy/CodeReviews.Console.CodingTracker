@@ -25,13 +25,18 @@ namespace CodingTracker.Kunikazu723
 
             string dateTimeFormat = configuration["DateTimeFormat"]
                 ?? throw new InvalidOperationException("DateTime Format not found in appsettings.json");
+            bool seedDatabase = configuration.GetValue<bool?>("SeedDatabase")
+                ?? throw new InvalidOperationException("SeedDatabase not found in appsettings.json");
+
 
             var dbInitializer = new DatabaseInitializer(connectionString);
             dbInitializer.Initialize();
 
             IDao<CodingSession> codingSessionDao = new CodingSessionDao(connectionString);
             var codingSessionSeeder = new CodingSessionSeeder(codingSessionDao, dateTimeFormat);
-            codingSessionSeeder.SeedIfEmpty();
+            
+            if (seedDatabase)
+                codingSessionSeeder.SeedIfEmpty();
 
             var validation = new Validation(dateTimeFormat);
             var userInput = new UserInput(validation);
