@@ -1,0 +1,77 @@
+Coding tracker 
+
+I was tasked with creating a coding tracker, an application that allows the user to Create, View/Read, Update and Delete any record that users enter.
+
+I needed four classes and a program file that acts as the entry point for the program.
+
+The coding tracker differs from the habit tracker in a few areas, the habit tracker used ADO.NET to write to the databse and to view the database we used an external terminal.
+
+The habit tracker also holds all the data in one class (program.cs) whereas the coding tracker uses separation of concerns to split the different functions into classes.
+
+An appsettings.json file was created so I could place the database connectionstring inside of it, to access the string I created a configuration builder which adds the file and builds it 
+
+we store our new configuration as connectionstring, so whenever our database needs accessing we call on "connectionstring" which holds the data source of our database.
+
+
+CodingController
+The coding controller class is responsible for database operations this is where we make use of Dapper and Spectre.
+Dapper is used to simplify the commands we need to communicate with our database.
+Spectre was used in this project to present our data in a table in the terminal which makes viewing our user input neater and more presentable.
+
+
+I created a CreateTable Method that uses the Dapper syntax to execute the SQL to create the table with the variables I chose, ID, StartTime, EndTime and duration. We use the connectionstring we created to create a variable that will communicate with the database.
+
+Create table is called as we need to create the table before anything happens.
+I needed to create a method called viewRecords that contained my initial record viewer method GETallrecords as I faced issues with user input.
+The method calls get all records then asks the user to "Press any key to return to main menu" followed by a readkey that exits the method.
+
+Getallrecords clears the console, uses connectionstring to create connectionString to create a connection to the SQLite database. It maps each row from the table to the coding tracker object.
+
+The returned collection is converted into a List<CodingTracker> and stored in the tableData variable.
+
+I created a new table and added columns for each variable where each variable would go.
+we use a foreach loop to add rows, we convert the output tostring  and write them to the table.
+
+The Insert, Delete and update methods in coding controller rely on variables being passed in.
+
+The insert method needs two variables startime and endtime as we need the two to calculate duration
+The delete method needs an id to delete so we must pass in an id.
+The update method needs id , startTime and datetime to overwrite the initial values.
+
+The variables being passed into the controller methods rely on user input.
+
+UserInput
+
+User input has methods that take the users input and pass them into our controller class methods to do calculations and to insert, delete or update records before putting them into the database.
+
+GeTimeInput - used to gather users input for StartTime and End Time methods.
+The method is designed to write a question, collect users input and return the input after being validated.
+The ValidateTime method from the Validation class is used here 
+
+The variable we use to gather the users input is passed into ValidateTime
+
+This method has a string parameter that asks the user what to enter
+When called upon we must write the question we are asking the user for example in InsertInput;
+
+startTime = GeTimeInput("Please enter the start Time Format: (HH:mm), Or enter 0 to exit.");
+endTime = GeTimeInput("Please enter the end Time Format: (HH:mm), Or enter 0 to exit.");
+
+Then inside InsertInput when we call input " CodingController.Insert(startTime, endTime);"
+
+startTime and EndTime were passed into the method.
+
+InsertInput - Used to pass user input into the insert method
+
+DeleteInput - Used to pass user input into the delete method
+clear the console
+call the records 
+ask the record that we want to delete 
+collect it pass the input into our validation method 
+pass the collected input into the delete method.
+
+
+
+
+
+
+
