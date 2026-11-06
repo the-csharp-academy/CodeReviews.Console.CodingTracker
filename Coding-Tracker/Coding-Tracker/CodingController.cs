@@ -6,9 +6,8 @@ using Spectre.Console;
 
 class CodingController
 {
-    // CodingController.cs — database operations
 
-    static string connectionString = new ConfigurationBuilder()
+    static string _connectionString = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json")
         .Build()
     .GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found.");
@@ -16,7 +15,7 @@ class CodingController
 
     public static void CreateTable()
     {
-        using (var connection = new SqliteConnection(connectionString))
+        using (var connection = new SqliteConnection(_connectionString))
         {
             connection.Execute(@"CREATE TABLE IF NOT EXISTS coding_tracker (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,7 +36,7 @@ class CodingController
     public static void GetAllRecords()
     {
         Console.Clear();
-        using (var connection = new SqliteConnection(connectionString))
+        using (var connection = new SqliteConnection(_connectionString))
         {
             List<Codingtracker> tabledata = connection.Query<Codingtracker>("SELECT * FROM coding_tracker").ToList();
 
@@ -54,7 +53,7 @@ class CodingController
                     session.Id.ToString(),
                     session.StartTime.ToString(),
                     session.EndTime.ToString(),
-                    session.Duration.ToString()
+                    session.Duration
                 );
             }
 
@@ -68,10 +67,11 @@ class CodingController
 
         string duration = (endTime - startTime).ToString();
 
-        using (var connection = new SqliteConnection(connectionString))
+        using (var connection = new SqliteConnection(_connectionString))
         {
-            int rowsAffected = connection.Execute("INSERT INTO coding_tracker (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)",
-          new { StartTime = startTime, EndTime = endTime, Duration = duration });
+            connection.Execute("INSERT INTO coding_tracker (StartTime, EndTime, Duration) VALUES (@StartTime, @EndTime, @Duration)",
+           new { StartTime = startTime, EndTime = endTime, Duration = duration });
+
             Console.WriteLine("Record Inserted.\nPress any key to return to main menu.");
             Console.ReadKey();
         }
@@ -80,7 +80,7 @@ class CodingController
     public static void Delete(int id)
     {
 
-        using (var connection = new SqliteConnection(connectionString))
+        using (var connection = new SqliteConnection(_connectionString))
         {
             int rowsAffected = connection.Execute("DELETE FROM coding_tracker WHERE Id = @Id", new { Id = id });
 
@@ -93,15 +93,15 @@ class CodingController
         }
     }
 
-    public static void Update(int ID, DateTime startTime, DateTime endTime, string duration)
+    public static void Update(int id, DateTime startTime, DateTime endTime, string duration)
     {
 
 
-        using (var connection = new SqliteConnection(connectionString))
+        using (var connection = new SqliteConnection(_connectionString))
         {
 
             int rowsAffected = connection.Execute("UPDATE coding_tracker SET StartTime = @StartTime, EndTime = @EndTime, Duration = @Duration WHERE ID = @Id",
-               new { Id = ID, StartTime = startTime, EndTime = endTime, Duration = duration });
+               new { Id = id, StartTime = startTime, EndTime = endTime, Duration = duration });
 
             if (rowsAffected == 0)
             {

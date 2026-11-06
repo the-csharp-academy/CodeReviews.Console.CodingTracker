@@ -1,4 +1,3 @@
-// CodingSession.cs — the model
 
 public class Codingtracker
 {

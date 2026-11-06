@@ -30,17 +30,17 @@ class Validation
 
         return endTime;
     }
-    public static int ValidateId(string Input)
+    public static int ValidateId(string input)
     {
         int result;
 
-        while (!int.TryParse(Input, out result) || (result <= 0))
+        while (!int.TryParse(input, out result) || (result <= 0))
         {
 
-            if (Input == "0") return 0;
+            if (input == "0") return 0;
 
             Console.WriteLine("Please enter a valid id, or press 0 to return to the main menu");
-            Input = Console.ReadLine();
+            input = Console.ReadLine();
         }
 
         return result;

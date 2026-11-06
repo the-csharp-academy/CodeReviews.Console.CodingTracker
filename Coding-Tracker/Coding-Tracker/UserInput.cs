@@ -1,11 +1,8 @@
-using System.Runtime.ConstrainedExecution;
 
 public class Input
 {
     public static void GetUserInput()
     {
-        DateTime startTime;
-        DateTime endTime;
 
         bool end = false;
         while (end == false)
@@ -50,7 +47,6 @@ public class Input
                     Console.WriteLine("Please enter an option between 1 and 4.");
                     break;
             }
-
         }
     }
 
