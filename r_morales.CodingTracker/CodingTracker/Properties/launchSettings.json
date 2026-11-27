@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Coding.Tracker": {
+      "commandName": "Project",
+      "workingDirectory": "F:\\.NET-Projects\\CodeReviews.Console.CodingTracker\\r_morales.CodingTracker\\CodingTracker"
+    }
+  }
+}
